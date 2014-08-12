@@ -18,7 +18,7 @@ class TicTacToe(object):
             try:
                 pos = raw_input("Where would you like to place " + player + " (1-9)? ")
                 pos = int(pos)
-                if pos >= 1 and pos <= 9:
+                if pos >= 1 and pos <= 9 and self.gameboard.has_mark(pos) is False:
                     break
                 else:
                     self.print_input_error()
@@ -32,7 +32,7 @@ class TicTacToe(object):
     def get_player(self, i):
         return self.players[i]
 
-    def is_game_over(self):
+    def is_win(self):
         game_over = False
         win_list = self.get_winning_pos()
         for item in win_list:
@@ -40,6 +40,9 @@ class TicTacToe(object):
             if game_over:
                 break
         return game_over
+
+    def is_draw(self):
+        return self.gameboard.is_all_marked()
 
     @staticmethod
     def get_winning_pos():
@@ -65,11 +68,17 @@ class TicTacToe(object):
         print " "
 
     def print_state(self):
+        print " "
         self.gameboard.print_board()
+        print " "
 
-    def print_result(self, player):
+    @staticmethod
+    def print_draw():
         print " "
-        self.gameboard.print_board()
+        print "Draw!"
         print " "
+
+    @staticmethod
+    def print_win(player):
         print "Player " + player + " has won!"
         print " "

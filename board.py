@@ -19,6 +19,12 @@ class Board(object):
         else:
             return True
 
+    def is_all_marked(self):
+        for i in range(1, (self.num_row*self.num_col) + 1):
+            if self.has_mark(i) is False:
+                return False
+        return True
+
     def are_marks_equal(self, *pos):
         pos_list = list(pos)
         val_list = []

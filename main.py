@@ -14,8 +14,13 @@ while True:
     pos = g.get_input(player)
     g.make_move(pos, player)
 
-    if g.is_game_over():
-        g.print_result(player)
+    if g.is_win():
+        g.print_state()
+        g.print_win(player)
+        break
+    elif g.is_draw():
+        g.print_state()
+        g.print_draw()
         break
     else:
         g.print_state()

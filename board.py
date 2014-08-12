@@ -34,21 +34,21 @@ class Board(object):
 
     def print_board(self):
         j = 0
-        print '--------------------'
-        print ' | ',
+        print "--------------------"
+        print " | ",
         for i in range(1, (self.num_row * self.num_col) + 1):
             if j >= self.num_col:
                 j=0
-                print ' '
-                print '--------------------'
-                print ' | ',
+                print " "
+                print "--------------------"
+                print " | ",
 
             j += 1
             val = self.b[i]
             if val is None:
-                print ' ',
+                print " ",
             else:
                 print val,
-            print ' | ',
-        print ' '
-        print '--------------------'
+            print " | ",
+        print " "
+        print "--------------------"

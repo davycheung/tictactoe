@@ -10,7 +10,7 @@ while True:
     pos = g.get_input()
     g.make_move(pos)
 
-    if g.is_win():
+    if g.has_winner():
         g.print_state()
         g.print_win()
         break

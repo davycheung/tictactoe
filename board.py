@@ -1,6 +1,4 @@
 
-#!/usr/bin/python2.7
-
 class Board(object):
 
     def __init__(self, num_row, num_col):

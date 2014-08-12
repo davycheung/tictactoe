@@ -16,13 +16,13 @@ class TicTacToe(object):
             self.instruction_b.set_mark(i, i)
 
     def inc_move_count(self):
-		    self.move_count += 1
+        self.move_count += 1
 
     def get_available_moves(self):
         return self.gameboard.get_available_pos()
 
     def get_game_copy(self):
-		    return copy.deepcopy(self)
+        return copy.deepcopy(self)
 
     def get_input(self):
         player = self.get_player()
@@ -99,7 +99,13 @@ class TicTacToe(object):
 class GameAI(object):
 
     def __init__(self, game):
-        self.game = game
+        self.game = game.get_game_copy()
+        self.pos_score = {}
         
     def get_next_move(self):
-        available_pos = get_available_moves
+        pos_available = self.game.get_available_moves()
+        for a_pos in pos_available:
+            pass
+            #self.game.
+            #self.pos_score[] = None
+        

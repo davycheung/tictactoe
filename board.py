@@ -10,6 +10,13 @@ class Board(object):
         for i in range(1, (num_row*num_col) + 1):
             self.b[i] = None
 
+    def get_available_pos(self):
+        pos_list = []
+        for i in range(1, (self.num_row*self.num_col) + 1):
+            if self.has_mark(i) is False:
+                pos_list.append(i)
+        return pos_list
+
     def set_mark(self, pos, value):
         self.b[pos] = value
 

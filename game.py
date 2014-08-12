@@ -2,6 +2,7 @@
 #!/usr/bin/python2.7
 
 from board import Board
+import copy
 
 class TicTacToe(object):
 
@@ -9,11 +10,22 @@ class TicTacToe(object):
         self.instruction_b = Board(3,3)
         self.gameboard = Board(3, 3)
         self.players = ["X", "O"]
+        self.move_count = 0
 
         for i in range(10, 0, -1):
             self.instruction_b.set_mark(i, i)
 
-    def get_input(self, player):
+    def inc_move_count(self):
+		    self.move_count += 1
+
+    def get_available_moves(self):
+        return self.gameboard.get_available_pos()
+
+    def get_game_copy(self):
+		    return copy.deepcopy(self)
+
+    def get_input(self):
+        player = self.get_player()
         while True:
             try:
                 pos = raw_input("Where would you like to place " + player + " (1-9)? ")
@@ -26,10 +38,12 @@ class TicTacToe(object):
                 self.print_input_error()
         return pos
 
-    def make_move(self, pos, val):
+    def make_move(self, pos):
+        val = self.get_player()
         self.gameboard.set_mark(pos, val)
 
-    def get_player(self, i):
+    def get_player(self):
+        i = self.move_count % 2
         return self.players[i]
 
     def is_win(self):
@@ -78,7 +92,14 @@ class TicTacToe(object):
         print "Draw!"
         print " "
 
-    @staticmethod
-    def print_win(player):
-        print "Player " + player + " has won!"
+    def print_win(self):
+        print "Player " + self.get_player() + " has won!"
         print " "
+
+class GameAI(object):
+
+    def __init__(self, game):
+        self.game = game
+        
+    def get_next_move(self):
+        available_pos = get_available_moves

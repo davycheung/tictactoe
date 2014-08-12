@@ -34,5 +34,4 @@ g.gameboard.set_mark(4, "O")
 #g.gameboard.set_mark(9, "X")
 
 g.gameboard.print_board()
-#print g.is_game_over()
-print g.gameboard.get_available_pos()
+#print g.get_game_copy().gameboard.get_available_pos()

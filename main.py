@@ -6,17 +6,13 @@ from game import TicTacToe
 g = TicTacToe()
 g.print_game_instructions()
 
-i = 0
 while True:
-    player = g.get_player(i % 2)
-    i += 1
-
-    pos = g.get_input(player)
-    g.make_move(pos, player)
+    pos = g.get_input()
+    g.make_move(pos)
 
     if g.is_win():
         g.print_state()
-        g.print_win(player)
+        g.print_win()
         break
     elif g.is_draw():
         g.print_state()
@@ -24,5 +20,7 @@ while True:
         break
     else:
         g.print_state()
+    
+    g.inc_move_count()
 
 

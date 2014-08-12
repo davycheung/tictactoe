@@ -115,23 +115,21 @@ class GameAI(object):
         for a_move in pos_available:
             g = game.get_game_copy()
             g.make_move(a_move)
+            #if len(g.get_available_moves()) > 0:
             g.inc_move_count()
+            
             scores.append(self.get_next_move(g))
             moves.append(a_move)
         
         if g.get_player() == self.player:
-            index = 0
-            for i in range(0, len(scores)):
-                if scores[i] == max(scores):
-                    index = i
+            for index, val in enumerate(scores):
+                if val == max(scores):
                     break
             self.choice = moves[index]
             return moves[index]
         else:
-            index = 0
-            for i in range(0, len(scores)):
-                if scores[i] == min(scores):
-                    index = i
+            for index, val in enumerate(scores):
+                if val == min(scores):
                     break
             self.choice = moves[index]
             return moves[index]

@@ -3,5 +3,6 @@
 
 from game import TicTacToe
 
-g = Game()
+g = TicTacToe()
+
 

@@ -13,21 +13,21 @@ class TicTacToe(object):
         for i in range(10, 0, -1):
             self.instruction_b.set_mark(i, i)
 
-    def print_game_instructions(self):
-        print " "
-        print "Input your choices using the below grid:"
-        self.instruction_b.print_board()
-        print " "
+    def get_input(self, player):
+        while True:
+            try:
+                pos = raw_input("Where would you like to place " + player + " (1-9)? ")
+                pos = int(pos)
+                if pos >= 1 and pos <= 9:
+                    break
+                else:
+                    self.print_input_error()
+            except ValueError:
+                self.print_input_error()
+        return pos
 
     def make_move(self, pos, val):
         self.gameboard.set_mark(pos, val)
-
-    def print_result(self, player):
-        print " "
-        self.gameboard.print_board()
-        print " "
-        print "Player " + player + " has won!"
-        print " "
 
     def get_player(self, i):
         return self.players[i]
@@ -54,3 +54,22 @@ class TicTacToe(object):
             [3, 5, 7]
         ]
 
+    @staticmethod
+    def print_input_error():
+        print "Invalid input. Please try again."
+
+    def print_game_instructions(self):
+        print " "
+        print "Input your choices using the below grid:"
+        self.instruction_b.print_board()
+        print " "
+
+    def print_state(self):
+        self.gameboard.print_board()
+
+    def print_result(self, player):
+        print " "
+        self.gameboard.print_board()
+        print " "
+        print "Player " + player + " has won!"
+        print " "

@@ -8,14 +8,16 @@ g.print_game_instructions()
 
 i = 0
 while True:
-    player = g.get_player(i)
+    player = g.get_player(i % 2)
     i += 1
 
-    pos = raw_input("Where would you like to place " + player + " (1-9)? ")
-    pos = int(pos)
+    pos = g.get_input(player)
     g.make_move(pos, player)
+
     if g.is_game_over():
         g.print_result(player)
+        break
+    else:
+        g.print_state()
 
-print g.print_result()
 

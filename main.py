@@ -20,9 +20,10 @@ while True:
     g = TicTacToe()
     g.print_game_instructions()
     first_move = True
+    human_turn = True
 
     if use_ai:
-        if randrange(1) % 2 == 0:
+        if randrange(2) % 2 == 0:
             human_turn = False
 
         if human_turn:

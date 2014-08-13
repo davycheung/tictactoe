@@ -14,27 +14,24 @@ class MinMaxAI(object):
         elif game.is_draw():
             return 0
         
-        scores = []
-        moves = []
+        scores = {}
         pos_available = game.get_available_moves()
         for a_move in pos_available:
             g = game.get_game_copy()
             g.make_move(a_move)
             g.inc_move_count()
+            scores[a_move] = self.get_next_move(g)
 
-            scores.append(self.get_next_move(g))
-            moves.append(a_move)
-        
         if g.get_player() == self.player:
-            for index, val in enumerate(scores):
-                if val == max(scores):
+            for pos in scores:
+                if scores[pos] == max(scores.values()):
                     break
         else:
-            for index, val in enumerate(scores):
-                if val == min(scores):
+            for pos in scores:
+                if scores[pos] == min(scores.values()):
                     break
-        self.move = moves[index]
-        return scores[index]
+        self.move = pos
+        return scores[pos]
         
     def get_move(self, game):
         self.get_next_move(game)

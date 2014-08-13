@@ -94,18 +94,18 @@ class TicTacToe(object):
         print "Player " + self.get_player() + " has won!"
         print " "
 
-class GameAI(object):
+class MinMaxAI(object):
 
     def __init__(self, player):
         self.player = player
-        self.choice = None
+        self.move = None
         
     def get_next_move(self, game):
         if game.has_winner() is True:
             if game.get_player() == self.player:
-                return 10
+                return 100
             else:
-                return -10
+                return -100
         elif game.is_draw():
             return 0
         
@@ -115,9 +115,8 @@ class GameAI(object):
         for a_move in pos_available:
             g = game.get_game_copy()
             g.make_move(a_move)
-            #if len(g.get_available_moves()) > 0:
             g.inc_move_count()
-            
+
             scores.append(self.get_next_move(g))
             moves.append(a_move)
         
@@ -125,14 +124,14 @@ class GameAI(object):
             for index, val in enumerate(scores):
                 if val == max(scores):
                     break
-            self.choice = moves[index]
-            return moves[index]
         else:
             for index, val in enumerate(scores):
                 if val == min(scores):
                     break
-            self.choice = moves[index]
-            return moves[index]
+        self.move = moves[index]
+        return scores[index]
         
-    def get_choice(self):
-        return self.choice
+    def get_move(self, game):
+        self.get_next_move(game)
+        return self.move
+

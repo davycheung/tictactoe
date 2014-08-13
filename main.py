@@ -5,10 +5,15 @@ from random import randrange
 from game import TicTacToe
 from intelligence import MinMaxAI
 
+def pause_break():
+    raw_input("Hit <enter> to continue")
+    print " "
+
 play = "Y"
 while True:
     use_ai = False
     while True:
+        print " "
         num_players = raw_input("How many players (1/2)? ")
         if num_players == "1" or num_players == "2":
             if num_players == "1":
@@ -19,6 +24,8 @@ while True:
 
     g = TicTacToe()
     g.print_game_instructions()
+    pause_break()
+
     first_move = True
     human_turn = True
 
@@ -27,12 +34,13 @@ while True:
             human_turn = False
 
         if human_turn:
-            print "Human is player 1."
+            print "Human is Player 1 (X)."
+            print "AI is Player 2 (O)"
         else:
-            print "AI is player 1."
+            print "AI is Player 1  (X)"
+            print "Human is Player 2 (O)."
 
-        raw_input("Hit <enter> to continue")
-
+    pause_break()
 
     while True:
         if human_turn:
@@ -54,9 +62,7 @@ while True:
             print "==========================="
             print "AI plays position: " + str(pos)
             print "==========================="
-            print " "
-            raw_input("Hit <enter> to continue")
-            print " "
+            pause_break()
             g.print_state()
 
         if g.has_winner():
@@ -81,3 +87,5 @@ while True:
 
     if play == "N":
         break
+
+

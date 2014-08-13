@@ -85,12 +85,12 @@ class TicTacToe(object):
         print " "
 
     @staticmethod
-    def print_draw():
+    def print_draw_msg():
         print " "
         print "Draw!"
         print " "
 
-    def print_win(self):
+    def print_win_msg(self):
         print "Player " + self.get_player() + " has won!"
         print " "
 

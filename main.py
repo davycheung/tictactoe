@@ -1,6 +1,7 @@
 
 #!/usr/bin/python2.7
 
+from random import randrange
 from game import TicTacToe
 from intelligence import MinMaxAI
 
@@ -18,7 +19,19 @@ while True:
 
     g = TicTacToe()
     g.print_game_instructions()
-    human_turn = True
+    first_move = True
+
+    if use_ai:
+        if randrange(1) % 2 == 0:
+            human_turn = False
+
+        if human_turn:
+            print "Human is player 1."
+        else:
+            print "AI is player 1."
+
+        raw_input("Hit <enter> to continue")
+
 
     while True:
         if human_turn:
@@ -29,12 +42,20 @@ while True:
             print "==========================="
             print "One moment, I'm thinking..."
             print "==========================="
-            computer = MinMaxAI(g.get_player())
-            pos = computer.get_move(g)
+
+            if (first_move):
+                pos = randrange(9) + 1
+            else:
+                computer = MinMaxAI(g.get_player())
+                pos = computer.get_move(g)
+
             g.make_move(pos)
             print "==========================="
             print "AI plays position: " + str(pos)
             print "==========================="
+            print " "
+            raw_input("Hit <enter> to continue")
+            print " "
             g.print_state()
 
         if g.has_winner():
@@ -45,6 +66,7 @@ while True:
             break
 
         g.inc_move_count()
+        first_move = False
         if use_ai is True:
             human_turn = not human_turn
 

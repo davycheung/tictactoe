@@ -1,9 +1,10 @@
 
 #!/usr/bin/python2.7
 
-from board import Board
+
 from game import TicTacToe
-from game import MinMaxAI
+from intelligence import MinMaxAI
+
 
 g = TicTacToe()
 g.print_game_instructions()
